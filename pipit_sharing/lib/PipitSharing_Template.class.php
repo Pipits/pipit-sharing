@@ -36,7 +36,7 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 			}
 
 			$url = rawurlencode("{$site_url}{$_SERVER['REQUEST_URI']}");
-			$twitter_args = $pinterest_args = $linkedin_args = $tumblr_args = $reddit_args = '';
+			$twitter_args = $pinterest_args = $linkedin_args = $tumblr_args = $reddit_args = $email_args = $whatsapp_args = '';
 			
 
 
@@ -203,6 +203,47 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 
 
 
+			/* E-mail */
+			$email_body = '';
+			if(isset($vars['sharing_email_subject']))
+			{
+				if($email_args != '') { $email_args .= '&'; }
+				$email_args .= 'subject='.rawurlencode($vars['sharing_email_subject']);
+			}
+			if(isset($vars['sharing_email_desc']))
+			{
+				if($email_args != '') { $email_args .= '&'; }
+				if(is_array($vars['sharing_email_desc']) && isset($vars['sharing_email_desc']['raw']))
+				{
+					$email_body = $vars['sharing_email_desc']['raw'];
+				}
+				else
+				{
+					$email_body = $vars['sharing_email_desc'];
+				}
+			}
+				$email_args .= '&body='.rawurlencode($email_body);
+				$email_args .= '%0D%0A%0D%0A'.$url;
+			$email_url = 'mailto:?'.$email_args;
+
+
+
+			/* WhatsApp */
+			if(isset($vars['sharing_whatsapp_desc']))
+			{
+				if(is_array($vars['sharing_whatsapp_desc']) && isset($vars['sharing_whatsapp_desc']['raw']))
+				{
+					$whatsapp_text .= $vars['sharing_whatsapp_desc']['raw'];
+				}
+				else
+				{
+					$whatsapp_text = $vars['sharing_whatsapp_desc'];
+				}
+				$whatsapp_args = rawurlencode($whatsapp_text);
+			}
+			$whatsapp_url = 'whatsapp://send?text='.$whatsapp_args.'%0D%0A%0D%0A'.$url;
+
+
 			$sharing_links = [
 				'facebook'=>$facebook_url,
 				'twitter'=>$twitter_url,
@@ -211,6 +252,8 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				'linkedin'=>$linkedin_url,
 				'pinterest'=>$pinterest_url,
 				'tumblr'=>$tumblr_url,
+				'email'=>$email_url,
+				'whatsapp'=>$whatsapp_url,
 			];
 			$html = $Template->replace_content_tags('sharing', $sharing_links, $html);
 		}
