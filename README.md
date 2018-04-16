@@ -46,6 +46,8 @@ You can find out more about Perch SSL configuration in Perch's [documentation](h
 * LinkedIn
 * Reddit
 * Pinterest
+* Email
+* WhatsApp
 
 
 For usage information and examples, visit the [documentation](https://grabapipit.com/pipits/apps/sharing/docs).
