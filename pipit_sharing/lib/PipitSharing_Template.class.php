@@ -35,7 +35,14 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				}
 			}
 
-			$url = rawurlencode("{$site_url}{$_SERVER['REQUEST_URI']}");
+			if(isset($vars['sharing_item_url']))
+			{
+				$url = rawurlencode("{$site_url}{$vars['sharing_item_url']}");
+			}
+			else
+			{
+				$url = rawurlencode("{$site_url}{$_SERVER['REQUEST_URI']}");
+			}
 			$twitter_args = $pinterest_args = $linkedin_args = $tumblr_args = $reddit_args = $email_args = $whatsapp_args = '';
 			
 
