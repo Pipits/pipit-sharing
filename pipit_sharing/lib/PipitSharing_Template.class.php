@@ -236,6 +236,8 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 
 
 			/* WhatsApp */
+			$whatsapp_phone = '';
+			$whatsapp_text = '';
 			if(isset($vars['sharing_whatsapp_desc']))
 			{
 				if(is_array($vars['sharing_whatsapp_desc']) && isset($vars['sharing_whatsapp_desc']['raw']))
@@ -246,9 +248,16 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				{
 					$whatsapp_text = $vars['sharing_whatsapp_desc'];
 				}
-				$whatsapp_args = rawurlencode($whatsapp_text);
+				$whatsapp_text = rawurlencode($whatsapp_text);
 			}
-			$whatsapp_url = 'whatsapp://send?text='.$whatsapp_args.'%0D%0A%0D%0A'.$url;
+
+			
+			if(isset($vars['sharing_whatsapp_phone']))
+			{
+				$whatsapp_phone = $vars['sharing_whatsapp_phone'];
+			}
+
+			$whatsapp_url = "https://wa.me/$whatsapp_phone?text=".$whatsapp_text.'%0D%0A%0D%0A'.$url;
 
 
 			$sharing_links = [
