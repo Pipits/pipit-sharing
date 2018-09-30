@@ -31,6 +31,9 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 			$linkedin_url = $Helper->generate_linkedin_url($url, $vars);
 			$tumblr_url = $Helper->generate_tumblr_url($url, $vars);
 			$pinterest_url = $Helper->generate_pinterest_url($url, $vars);
+
+			$google_calendar_url = $Helper->generate_calendar_url('google', $vars);
+			$yahoo_calendar_url = $Helper->generate_calendar_url('yahoo', $vars);
 			
 
 			$sharing_links = [
@@ -43,6 +46,9 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				'tumblr' => $tumblr_url,
 				'email' => $email_url,
 				'whatsapp' => $whatsapp_url,
+
+				'google_cal' => $google_calendar_url,
+				'yahoo_cal' => $yahoo_calendar_url
 			];
 			
 			$html = $Template->replace_content_tags('sharing', $sharing_links, $html);

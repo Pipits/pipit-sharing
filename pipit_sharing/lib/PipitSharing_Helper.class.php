@@ -1,5 +1,8 @@
 <?php
 
+use Spatie\CalendarLinks\Link;
+
+
 class PipitSharing_Helper {
 
     /**
@@ -339,4 +342,63 @@ class PipitSharing_Helper {
     }
 
 
+
+
+    /**
+     * Generate calendar links
+     */
+    function generate_calendar_url($type, $opts = array()) {
+        
+        $title = $desc = $address = '';
+        $all_day = false;
+
+        if(isset($opts['sharing_cal_title'])) {
+            $title = $opts['sharing_cal_title'];
+        }
+
+        if(isset($opts['sharing_cal_desc'])) {
+            $desc = $opts['sharing_cal_desc'];
+        }
+
+        if(isset($opts['sharing_cal_address'])) {
+            $address = $opts['sharing_cal_address'];
+        }
+
+
+        if(isset($opts['sharing_cal_from'])) {
+            $from = $opts['sharing_cal_from'];
+        } else {
+            $from = DateTime::createFromFormat('Y-m-d H:i', date('Y-m-d 09:00'));
+            //$from = DateTime::createFromFormat('Y-m-d H:i', '2018-02-01 09:00');
+        }
+
+        if(isset($opts['sharing_cal_to'])) {
+            $to = $opts['sharing_cal_to'];
+        } else {
+            $to = DateTime::createFromFormat('Y-m-d H:i', date('Y-m-d 10:00'));
+            //$to = DateTime::createFromFormat('Y-m-d H:i', '2018-02-02 09:00');
+        }
+
+
+        if(isset($opts['sharing_cal_all_day'])) {
+            $all_day = $opts['sharing_cal_all_day'];
+        }
+
+
+
+        $link = Link::create($title, $from, $to, $all_day)->description($desc)->address($address);
+
+        switch($type) {
+            case 'google':
+                return $link->google();
+                break;
+
+            case 'yahoo':
+                return $link->yahoo();
+                break;
+
+            default:
+                return $link->google();
+        }
+    }
 }

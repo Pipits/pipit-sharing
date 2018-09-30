@@ -8,6 +8,7 @@
 		$opts[] = array('label'=>'$_SERVER[\'HTTP_HOST\']', 'value'=>'2');
 		$this->add_setting('pipit_sharing_domain', 'Get website URL from:', 'select', false, $opts);
 		
+		include(PERCH_PATH.'/addons/apps/pipit_sharing/lib/vendor/autoload.php');
 		spl_autoload_register(function($class_name){
 			if (strpos($class_name, 'PipitSharing_')===0) {
 				include(PERCH_PATH.'/addons/apps/pipit_sharing/lib/'.$class_name.'.class.php');
