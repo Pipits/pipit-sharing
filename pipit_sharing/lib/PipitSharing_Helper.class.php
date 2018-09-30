@@ -401,4 +401,62 @@ class PipitSharing_Helper {
                 return $link->google();
         }
     }
+
+
+
+
+
+
+
+    /**
+     * 
+     */
+    function generate_url_for($type, $page_url, $opts) {
+        if(!$page_url) $page_url = $this->get_url();
+
+
+        switch($type) {
+            case 'facebook':
+                $link = $this->generate_facebook_url($page_url, $opts);
+                break;
+
+            case 'googleplus':
+                $link = $this->generate_googleplus_url($page_url, $opts);
+                break;
+
+            case 'reddit':
+                $link = $this->generate_reddit_url($page_url, $opts);
+                break;
+
+            case 'twitter':
+                $link = $this->generate_twitter_url($page_url, $opts);
+                break;
+
+            case 'tumblr':
+                $link = $this->generate_tumblr_url($page_url, $opts);
+                break;
+
+            case 'linkedin':
+                $link = $this->generate_linkedin_url($page_url, $opts);
+                break;
+
+            case 'pinterest':
+                $link = $this->generate_pinterest_url($page_url, $opts);
+                break;
+
+            case 'whatsapp':
+                $link = $this->generate_whatsapp_url($page_url, $opts);
+                break;
+
+            case 'email':
+                $link = $this->generate_whatsapp_url($page_url, $opts);
+                break;
+
+            default:
+                break;
+        }
+
+
+        return $link;
+    }
 }
