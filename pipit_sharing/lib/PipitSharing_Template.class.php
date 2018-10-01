@@ -19,37 +19,64 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				$url = $Helper->get_url();
 			}
 			
-
-			$googleplus_url = $Helper->generate_googleplus_url($url, $vars);
-			$facebook_url = $Helper->generate_facebook_url($url, $vars);
-			$twitter_url = $Helper->generate_twitter_url($url, $vars);
-
-			$email_url = $Helper->generate_email_url($url, $vars);
-			$whatsapp_url = $Helper->generate_whatsapp_url($url, $vars);
-			$reddit_url = $Helper->generate_reddit_url($url, $vars);
-
-			$linkedin_url = $Helper->generate_linkedin_url($url, $vars);
-			$tumblr_url = $Helper->generate_tumblr_url($url, $vars);
-			$pinterest_url = $Helper->generate_pinterest_url($url, $vars);
-
-			$google_calendar_url = $Helper->generate_calendar_url('google', $vars);
-			$yahoo_calendar_url = $Helper->generate_calendar_url('yahoo', $vars);
 			
+			$sharing_links = array();
+			$tags = $Template->find_all_tags('sharing');
+            
+            // $Tag is a PerchXMLTag
+            foreach($tags as $Tag) {
+				switch($Tag->id()) {
+					case 'facebook':
+						$sharing_links['facebook'] = $Helper->generate_facebook_url($url, $vars);
+						break;
+		
+					case 'googleplus':
+						$sharing_links['googleplus'] = $Helper->generate_googleplus_url($url, $vars);
+						break;
+		
+					case 'reddit':
+						$sharing_links['reddit'] = $Helper->generate_reddit_url($url, $vars);
+						break;
+		
+					case 'twitter':
+						// get opts from tag or sharing_twitter_
+						//$opts = $Helper->get_twitter_opts($Tag, $vars);
+						$sharing_links['twitter'] = $Helper->generate_twitter_url($url, $vars);
+						break;
+		
+					case 'tumblr':
+						$sharing_links['tumblr'] = $Helper->generate_tumblr_url($url, $vars);
+						break;
+		
+					case 'linkedin':
+						$sharing_links['linkedin'] = $Helper->generate_linkedin_url($url, $vars);
+						break;
+		
+					case 'pinterest':
+						$sharing_links['pinterest'] = $Helper->generate_pinterest_url($url, $vars);
+						break;
+		
+					case 'whatsapp':
+						$sharing_links['whatsapp'] = $Helper->generate_whatsapp_url($url, $vars);
+						break;
+		
+					case 'email':
+						$sharing_links['email'] = $Helper->generate_email_url($url, $vars);
+						break;
+		
+					case 'google_cal':
+						$sharing_links['google_cal'] = $Helper->generate_calendar_url('google', $vars);
+						break;
 
-			$sharing_links = [
-				'facebook' => $facebook_url,
-				'twitter' => $twitter_url,
-				'googleplus' => $googleplus_url,
-				'reddit' => $reddit_url,
-				'linkedin' => $linkedin_url,
-				'pinterest' => $pinterest_url,
-				'tumblr' => $tumblr_url,
-				'email' => $email_url,
-				'whatsapp' => $whatsapp_url,
+					case 'yahoo_cal':
+						$sharing_links['yahoo_cal'] = $Helper->generate_calendar_url('yahoo', $vars);
+						break;
 
-				'google_cal' => $google_calendar_url,
-				'yahoo_cal' => $yahoo_calendar_url
-			];
+					default:
+						break;
+				}
+				
+            }
 			
 			$html = $Template->replace_content_tags('sharing', $sharing_links, $html);
 		}
