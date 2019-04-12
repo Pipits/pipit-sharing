@@ -13,83 +13,13 @@
 
 
 
-
-
-	function pipit_sharing_facebook($opts = array(), $page_url = false, $return = false) {
+	function pipit_sharing_link($type, $opts = array(), $return = false) {
 		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('facebook', $page_url, $opts);
-		if($return) return $link;
-		echo $link;
-	}
+		$page_url = false;
+		
+		if(isset($opts['page-url'])) $page_url = $opts['page-url'];
 
-	
-
-	function pipit_sharing_googleplus($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('googleplus', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_twitter($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('twitter', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_tumblr($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('tumblr', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_linkedin($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('linkedin', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_whatsapp($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('whatsapp', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_email($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('email', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_reddit($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('reddit', $page_url, $opts, $return);
-		if($return) return $link;
-		echo $link;
-	}
-
-
-
-	function pipit_sharing_pinterest($opts = array(), $page_url = false, $return = false) {
-		$Helper = new PipitSharing_Helper;
-		$link = $Helper->generate_url_for('pinterest', $page_url, $opts, $return);
+		$link = $Helper->generate_url_for($type, $page_url, $opts);
 		if($return) return $link;
 		echo $link;
 	}
