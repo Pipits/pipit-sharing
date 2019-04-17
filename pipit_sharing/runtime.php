@@ -17,9 +17,17 @@
 		$Helper = new PipitSharing_Helper;
 		$page_url = false;
 		
-		if(isset($opts['page-url'])) $page_url = $opts['page-url'];
+		if(isset($opts['page-url'])) {
+			$page_url = rawurlencode($opts['page-url']);
+			unset($opts['page-url']);
+		}
 
-		$link = $Helper->generate_url_for($type, $page_url, $opts);
+		$prefixed_opts = array();
+		foreach($opts as $key => $val) {
+			$prefixed_opts["sharing_{$type}_{$key}"] = $val;
+		}
+
+		$link = $Helper->generate_url_for($type, $page_url, $prefixed_opts);
 		if($return) return $link;
 		echo $link;
 	}
