@@ -29,10 +29,16 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 				$opts = array();
 
 				foreach($tag_attributes as $key => $val) {
-					$opts['sharing_' .  $Tag->id() . '_' . $key] = $val;
+					if($key == 'url') {
+						$url = rawurlencode($val);
+					} else {
+						$opts['sharing_' .  $Tag->id() . '_' . $key] = $val;
+					}
 				}
 
 				$opts = array_merge($vars, $opts);
+
+				
 
 				switch($Tag->id()) {
 					case 'facebook':
