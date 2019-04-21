@@ -4,9 +4,10 @@
 		$this->require_version('pipit_sharing', '3.0');
 		
 		$opts = array();
-		$opts[] = array('label'=>'Settings (recommended)', 'value'=>'1');
+		$opts[] = array('label'=>'Settings', 'value'=>'1');
 		$opts[] = array('label'=>'$_SERVER[\'HTTP_HOST\']', 'value'=>'2');
-		$this->add_setting('pipit_sharing_domain', 'Get website URL from:', 'select', false, $opts);
+		$opts[] = array('label'=>'Perch config (recommended)', 'value'=>'3');
+		$this->add_setting('pipit_sharing_domain', 'Get website URL from:', 'select', '3', $opts);
 		
 		include(PERCH_PATH.'/addons/apps/pipit_sharing/lib/vendor/autoload.php');
 		spl_autoload_register(function($class_name){

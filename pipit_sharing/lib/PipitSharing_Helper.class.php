@@ -18,14 +18,26 @@ class PipitSharing_Helper {
             $protocol = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://';
         }
         
-        if($Settings->get('pipit_sharing_domain')->val() && $Settings->get('pipit_sharing_domain')->val() == '2') {
-            $site_url = $protocol . $_SERVER['HTTP_HOST'];
-        } else {
-            $site_url = $Settings->get('siteURL')->val();
-            if(substr($site_url, 0, 4) !== "http") {
-                $site_url = $protocol . $site_url;
-            }
+        $site_url = $protocol . $_SERVER['HTTP_HOST'];
+
+        switch($Settings->get('pipit_sharing_domain')->val()) {
+            case '1':
+                $site_url = $Settings->get('siteURL')->val();
+                if(substr($site_url, 0, 4) !== "http") {
+                    $site_url = $protocol . $site_url;
+                }
+                break;
+
+            case '3':
+                if(defined('SITE_URL')) {
+                    $site_url = SITE_URL;
+                } else {
+                    PerchUtil::debug('Pipit Sharing: SITE_URL is not defined. Using $_SERVER[\'HTTP_HOST\'] instead.', 'notice');
+                }
+                break;
         }
+        
+        
 
 
         return $site_url;
