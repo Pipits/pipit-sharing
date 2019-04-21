@@ -1,6 +1,6 @@
 <?php
 	if ($CurrentUser->logged_in() && $CurrentUser->has_priv('pipit_sharing')) {
-		$this->register_app('pipit_sharing', 'Pipit Sharing', 99, 'Social Sharing App', '2.0', true);
+		$this->register_app('pipit_sharing', 'Pipit Sharing', 99, 'Social Sharing App', '2.0.1', true);
 		$this->require_version('pipit_sharing', '3.0');
 		
 		$opts = array();
