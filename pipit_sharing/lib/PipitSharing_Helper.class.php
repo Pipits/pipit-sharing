@@ -155,7 +155,7 @@ class PipitSharing_Helper {
         if(isset($opts['sharing_pinterest_media'])) {
             
             if(is_array($opts['sharing_pinterest_media']) && isset($opts['sharing_pinterest_media']['_default'])) {
-                $pin_media =  $site_url . $opts['sharing_pinterest_media']['_default'];
+                $pin_media =  $page_url . $opts['sharing_pinterest_media']['_default'];
             } else {
                 $pin_media = $opts['sharing_pinterest_media'];
             }

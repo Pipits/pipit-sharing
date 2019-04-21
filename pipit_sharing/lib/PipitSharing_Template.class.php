@@ -52,6 +52,8 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 					}
 				}
 
+
+				// $vars contains the content variables from Perch
 				$opts = array_merge($vars, $opts);
 
 				
