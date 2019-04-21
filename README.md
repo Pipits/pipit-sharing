@@ -13,20 +13,28 @@ The Sharing app enables you to quickly and easily add sharing links to your Perc
 
 ## Configuration
 ### Website URL
-By default Pipit Sharing uses the value of the Website URL field in the Settings. It's a general Perch setting and is available on all Perch websites.
+By default Pipit Sharing uses `$_SERVER['HTTP_HOST']` to get the website's domain `https://example.com`.
 
-Under the Sharing app settings, there's a select field "Get website URL from". It has options:
+You can tell it to get it from somewhere else. Under the Sharing app settings, there's a select field "Get website URL from". It has options:
 
 | Option                | What it means                                                                |
 |-----------------------|------------------------------------------------------------------------------|
-| Settings              | From the Website URL field in the Settings. This is the recommended setting. |
+| Settings              | From the Website URL field in the Settings.                                  |
 | $_SERVER['HTTP_HOST'] | A less secure alternative, but useful if sub-domains are used.               |
+| Perch configuration   | From Perch configuration file. Use the constant `SITE_URL`                   |
+
+
+Defining the constant `SITE_URL`:
+
+```php
+define('SITE_URL', 'https://example.com');
+```
 
 
 ### SSL 
 If you are using the Website URL in the Settings option, whatever protocol (`http` or `https`) you set there will be used. 
 
-If you fail to add the protocol Website URL or use the `$_SERVER['HTTP_HOST']` option, the app will check whether you have enabled SSL in your Perch config file `perch/config.php`. If you do not have SSL enabled in your config, the app will check the page's URL at runtime and will use whatever protocol is being used.
+If you fail to add the protocol to Website URL or use the `$_SERVER['HTTP_HOST']` option, the app will check whether you have enabled SSL in your Perch config file `perch/config.php`. If you do not have SSL enabled in your config, the app will check the page's URL at runtime and will use whatever protocol is being used.
 
 To enable SSL in your `perch/config.php`:
 
@@ -36,6 +44,25 @@ define('PERCH_SSL', true);
 
 
 You can find out more about Perch SSL configuration in Perch's [documentation](https://docs.grabaperch.com/perch/configuration/ssl/).
+
+
+
+## Usage
+
+### In a Perch template
+
+```html
+<perch:sharing id="twitter" desc="{postTitle}">
+```
+
+### In PHP
+
+```php
+pipit_sharing_link('twitter', ['desc' => 'Some text']);
+```
+
+For usage details and examples, visit the [documentation](https://grabapipit.com/pipits/apps/sharing/docs).
+
 
 
 ## Available sharing links for
@@ -50,4 +77,16 @@ You can find out more about Perch SSL configuration in Perch's [documentation](h
 * WhatsApp
 
 
-For usage information and examples, visit the [documentation](https://grabapipit.com/pipits/apps/sharing/docs).
+
+## Calendar links [experimental]
+You can now generate "add to" calendar links for:
+
+* Google
+* Yahoo
+* Outlook (web)
+* ICS - data URI (for iCal & Outlook)
+
+
+
+## Credits
+Pipit Sharing uses the [spatie/calendar-links](https://github.com/spatie/calendar-links) package to generate calendar links.
