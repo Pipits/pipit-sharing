@@ -30,25 +30,17 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 
 				foreach($tag_attributes as $key => $val) {
 					if($key == 'url') {
-						$url = rawurlencode($val);
+						$include_domain = true;
+						if(isset($tag_attributes['include_domain']) && $tag_attributes['include_domain'] == false) $include_domain = false;
+						$url = $Helper->get_url($this->_replace_vars($val, $vars), $include_domain);
 					} else {
-
 						if(strpos($Tag->id(), '_cal') !== false) {
 							$key_prefix = 'sharing_cal_';
 						} else {
 							$key_prefix = 'sharing_' .  $Tag->id() . '_';
 						}
 
-						if(substr($val, 0, 1) === '{') {
-							// variable - {variable_id}
-							$var_key = trim($val, '{}');
-							if(isset($vars[$var_key])) {
-								$opts[$key_prefix . $key] = $vars[$var_key];
-							}
-						} else {
-							// static content
-							$opts[$key_prefix . $key] = $val;
-						}
+						$opts[$key_prefix . $key] = $this->_replace_vars($val, $vars);
 					}
 				}
 
@@ -126,5 +118,17 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
     public function render_runtime($html, $Template)
     {
         return $html;
+	}
+	
+
+	private function _replace_vars($val, $vars) {
+        if(substr($val, 0, 1) === '{') {
+			$var_key = trim($val, '{}');
+            if(isset($vars[$var_key])) return $vars[$var_key];
+        } else {
+			return $val;
+		}
+
+        return '';
     }
 }
