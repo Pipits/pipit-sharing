@@ -366,17 +366,18 @@ class PipitSharing_Helper {
 
 
         if(isset($opts['sharing_cal_from'])) {
-            $from = $opts['sharing_cal_from'];
+            //$from = $opts['sharing_cal_from'];
+            $from = DateTime::createFromFormat('Y-m-d H:i', date($opts['sharing_cal_from']));
+
         } else {
             $from = DateTime::createFromFormat('Y-m-d H:i', date('Y-m-d 09:00'));
-            //$from = DateTime::createFromFormat('Y-m-d H:i', '2018-02-01 09:00');
         }
 
         if(isset($opts['sharing_cal_to'])) {
-            $to = $opts['sharing_cal_to'];
+            //$to = $opts['sharing_cal_to'];
+            $to = DateTime::createFromFormat('Y-m-d H:i', date($opts['sharing_cal_to']));
         } else {
             $to = DateTime::createFromFormat('Y-m-d H:i', date('Y-m-d 10:00'));
-            //$to = DateTime::createFromFormat('Y-m-d H:i', '2018-02-02 09:00');
         }
 
 
