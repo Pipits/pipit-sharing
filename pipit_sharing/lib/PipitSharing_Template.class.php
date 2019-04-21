@@ -102,9 +102,6 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 					case 'ics_cal':
 						$sharing_links['ics_cal'] = $Helper->generate_calendar_url('ics', $opts);
 						break;
-
-					default:
-						break;
 				}
 				
             }

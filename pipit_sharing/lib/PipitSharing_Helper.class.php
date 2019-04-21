@@ -472,7 +472,20 @@ class PipitSharing_Helper {
                 $link = $this->generate_whatsapp_url($page_url, $opts);
                 break;
 
-            default:
+            case 'google_cal':
+                $link = $this->generate_calendar_url('google', $opts);
+                break;
+
+            case 'yahoo_cal':
+                $link = $this->generate_calendar_url('yahoo', $opts);
+                break;
+
+            case 'weboutlook_cal':
+                $link = $this->generate_calendar_url('weboutlook', $opts);
+                break;
+
+            case 'ics_cal':
+                $link = $this->generate_calendar_url('ics', $opts);
                 break;
         }
 
