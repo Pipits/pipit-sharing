@@ -50,8 +50,11 @@ class PipitSharing_Helper {
     /**
      * Get encoded page url
      */
-    function get_url($page_url = false) {
-        $site_url = $this->get_site_url();
+    function get_url($page_url = false, $include_domain = true) {
+        $site_url = '';
+        if($include_domain) {
+            $site_url = $this->get_site_url();
+        }
 
         if($page_url) {
             return rawurlencode("{$site_url}{$page_url}");

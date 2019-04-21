@@ -18,7 +18,11 @@
 		$page_url = false;
 		
 		if(isset($opts['page-url'])) {
-			$page_url = rawurlencode($opts['page-url']);
+			$include_domain = false;
+			if(isset($opts['include-domain']) && $opts['include-domain']) $include_domain = true;
+			
+			$page_url = $Helper->get_url($opts['page-url'], $include_domain);
+			
 			unset($opts['page-url']);
 		}
 
