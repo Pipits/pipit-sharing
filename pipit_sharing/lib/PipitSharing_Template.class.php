@@ -32,15 +32,22 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 					if($key == 'url') {
 						$url = rawurlencode($val);
 					} else {
+
+						if(strpos($Tag->id(), '_cal') !== false) {
+							$key_prefix = 'sharing_cal_';
+						} else {
+							$key_prefix = 'sharing_' .  $Tag->id() . '_';
+						}
+
 						if(substr($val, 0, 1) === '{') {
 							// variable - {variable_id}
 							$var_key = trim($val, '{}');
 							if(isset($vars[$var_key])) {
-								$opts['sharing_' .  $Tag->id() . '_' . $key] = $vars[$var_key];
+								$opts[$key_prefix . $key] = $vars[$var_key];
 							}
 						} else {
 							// static content
-							$opts['sharing_' .  $Tag->id() . '_' . $key] = $val;
+							$opts[$key_prefix . $key] = $val;
 						}
 					}
 				}
