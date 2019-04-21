@@ -1,5 +1,5 @@
 {
     "require": {
-        "spatie/calendar-links": "^1.1"
+        "spatie/calendar-links": "1.2.3"
     }
 }

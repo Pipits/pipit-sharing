@@ -1,17 +1,17 @@
 [
     {
         "name": "spatie/calendar-links",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
+        "version": "1.2.3",
+        "version_normalized": "1.2.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/spatie/calendar-links.git",
-            "reference": "8ecc427f3297dbf71376d02abace40a0d4781173"
+            "reference": "0a5d95c6a19dbad9dfab3d64775a0d9cc7a02f30"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/spatie/calendar-links/zipball/8ecc427f3297dbf71376d02abace40a0d4781173",
-            "reference": "8ecc427f3297dbf71376d02abace40a0d4781173",
+            "url": "https://api.github.com/repos/spatie/calendar-links/zipball/0a5d95c6a19dbad9dfab3d64775a0d9cc7a02f30",
+            "reference": "0a5d95c6a19dbad9dfab3d64775a0d9cc7a02f30",
             "shasum": ""
         },
         "require": {
@@ -21,7 +21,7 @@
             "phpunit/phpunit": "^6.0",
             "spatie/phpunit-snapshot-assertions": "^1.0"
         },
-        "time": "2018-08-13T12:17:20+00:00",
+        "time": "2019-02-14T15:43:28+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

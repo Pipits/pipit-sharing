@@ -381,8 +381,8 @@ class PipitSharing_Helper {
         }
 
 
-        if(isset($opts['sharing_cal_all_day'])) {
-            $all_day = $opts['sharing_cal_all_day'];
+        if(isset($opts['sharing_cal_allday'])) {
+            $all_day = $opts['sharing_cal_allday'];
         }
 
 
@@ -398,8 +398,12 @@ class PipitSharing_Helper {
                 return $link->yahoo();
                 break;
 
+            case 'weboutlook':
+                return $link->webOutlook();
+                break;
+
             default:
-                return $link->google();
+                return $link->ics();
         }
     }
 

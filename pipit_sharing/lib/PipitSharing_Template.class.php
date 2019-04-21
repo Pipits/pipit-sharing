@@ -101,6 +101,14 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 						$sharing_links['yahoo_cal'] = $Helper->generate_calendar_url('yahoo', $opts);
 						break;
 
+					case 'weboutlook_cal':
+						$sharing_links['weboutlook_cal'] = $Helper->generate_calendar_url('weboutlook', $opts);
+						break;
+
+					case 'ics_cal':
+						$sharing_links['ics_cal'] = $Helper->generate_calendar_url('ics', $opts);
+						break;
+
 					default:
 						break;
 				}
