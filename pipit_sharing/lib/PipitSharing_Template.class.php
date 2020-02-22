@@ -119,13 +119,16 @@ class PipitSharing_Template extends PerchAPI_TemplateHandler
 	
 
 	private function _replace_vars($val, $vars) {
-        if(substr($val, 0, 1) === '{') {
-			$var_key = trim($val, '{}');
-            if(isset($vars[$var_key])) return $vars[$var_key];
-        } else {
-			return $val;
-		}
+		return  preg_replace_callback('/{([A-Za-z0-9_\-]+)}/', function($matches) use($vars) {
+            if (isset($vars[$matches[1]])) {
 
-        return '';
+                if(!is_array( $vars[$matches[1]] )) {
+                    return $vars[$matches[1]];
+                } elseif(isset( $vars[$matches[1]]['_default'] )) {
+                    return $vars[$matches[1]]['_default'];
+                }
+
+            }
+        }, $val);
     }
 }
