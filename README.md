@@ -52,7 +52,7 @@ You can find out more about Perch SSL configuration in Perch's [documentation](h
 ### In a Perch template
 
 ```html
-<perch:sharing id="twitter" desc="{postTitle}">
+<perch:sharing id="twitter" desc="Read: {postTitle}">
 ```
 
 ### In PHP
