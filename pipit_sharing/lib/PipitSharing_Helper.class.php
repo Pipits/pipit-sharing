@@ -469,7 +469,7 @@ class PipitSharing_Helper {
                 break;
 
             case 'email':
-                $link = $this->generate_whatsapp_url($page_url, $opts);
+                $link = $this->generate_email_url($page_url, $opts);
                 break;
 
             case 'google_cal':
