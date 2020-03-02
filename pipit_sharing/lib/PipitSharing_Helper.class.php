@@ -301,13 +301,9 @@ class PipitSharing_Helper {
 
 
         if(isset($opts['sharing_email_desc'])) {
-            if($args != '') { $args .= '&'; }
-            if(is_array($opts['sharing_email_desc']) && isset($opts['sharing_email_desc']['raw']))
-            {
+            if(is_array($opts['sharing_email_desc']) && isset($opts['sharing_email_desc']['raw'])) {
                 $email_body = $opts['sharing_email_desc']['raw'];
-            }
-            else
-            {
+            } else {
                 $email_body = $opts['sharing_email_desc'];
             }
         }
